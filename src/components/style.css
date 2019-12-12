@@ -159,8 +159,7 @@
 }
 
 .container .rightTable .priceShow .allPrice {
-  min-width: 14.28571%;
-  width: 100%;
+  min-width: calc(100% / 7);
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -237,51 +236,51 @@
   border-left: 10px solid #ff8e26;
 }
 
-.container .rightTable .priceShow .allPrice.show1 {
+.container .rightTable .priceShow .allPrice.show_1 {
   min-width: calc((100% / 1) * 7);
 }
 
-.container .rightTable .priceShow .allPrice.show1.slider1 {
+.container .rightTable .priceShow .allPrice.show_1.slider1 {
   left: calc(-1 * (100% / 1));
 }
 
-.container .rightTable .priceShow .allPrice.show1.slider2 {
+.container .rightTable .priceShow .allPrice.show_1.slider2 {
   left: calc(-2 * (100% / 1));
 }
 
-.container .rightTable .priceShow .allPrice.show2 {
+.container .rightTable .priceShow .allPrice.show_2 {
   min-width: calc((100% / 2) * 7);
 }
 
-.container .rightTable .priceShow .allPrice.show2.slider1 {
+.container .rightTable .priceShow .allPrice.show_2.slider1 {
   left: calc(-1 * (100% / 2));
 }
 
-.container .rightTable .priceShow .allPrice.show2.slider2 {
+.container .rightTable .priceShow .allPrice.show_2.slider2 {
   left: calc(-2 * (100% / 2));
 }
 
-.container .rightTable .priceShow .allPrice.show3 {
+.container .rightTable .priceShow .allPrice.show_3 {
   min-width: calc((100% / 3) * 7);
 }
 
-.container .rightTable .priceShow .allPrice.show3.slider1 {
+.container .rightTable .priceShow .allPrice.show_3.slider1 {
   left: calc(-1 * (100% / 3));
 }
 
-.container .rightTable .priceShow .allPrice.show3.slider2 {
+.container .rightTable .priceShow .allPrice.show_3.slider2 {
   left: calc(-2 * (100% / 3));
 }
 
-.container .rightTable .priceShow .allPrice.show4 {
+.container .rightTable .priceShow .allPrice.show_4 {
   min-width: calc((100% / 4) * 7);
 }
 
-.container .rightTable .priceShow .allPrice.show4.slider1 {
+.container .rightTable .priceShow .allPrice.show_4.slider1 {
   left: calc(-1 * (100% / 4));
 }
 
-.container .rightTable .priceShow .allPrice.show4.slider2 {
+.container .rightTable .priceShow .allPrice.show_4.slider2 {
   left: calc(-2 * (100% / 4));
 }
 
@@ -291,13 +290,6 @@
   }
   .container .rightTable .slide_btn {
     display: none;
-  }
-  .container .rightTable .scrolled {
-    position: relative;
-    left: 0;
-    -webkit-transition: none;
-    transition: none;
-    top: static;
   }
   .container .rightTable .scrolled .cellInfo {
     width: 100%;
@@ -327,14 +319,14 @@
     position: relative;
     height: 401px;
   }
-  .container .rightTable .endDate div {
-    min-width: calc(100% / 3);
+  .container .rightTable .endDate {
+    min-width: calc((100% / 3) * 7);
   }
   .container .rightTable .priceShow {
-    width: inherit;
+    min-width: calc((100% / 3) * 7);
   }
   .container .rightTable .priceShow .cellInfo {
-    min-width: calc(100% / 3);
+    min-width: calc(100% / 7);
     width: 100%;
   }
   .container .show_i {

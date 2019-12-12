@@ -138,8 +138,7 @@ $cellInfo-width: 100% / $cell-count;
       width: 100%;
       overflow: hidden;
       .allPrice {
-        min-width: $cellInfo-width;
-        width: 100%;
+        min-width: calc(100% / 7);
         flex-wrap: wrap;
         .cellInfo {
           position: relative;
@@ -203,7 +202,7 @@ $cellInfo-width: 100% / $cell-count;
           }
         }
 
-        &.show1 {
+        &.show_1 {
           min-width: calc((100% / 1) * 7); //顯示幾格
           &.slider1 {
             left: calc(-1 * (100% / 1)); //點六次
@@ -212,7 +211,7 @@ $cellInfo-width: 100% / $cell-count;
             left: calc(-2 * (100% / 1)); //點三次
           }
         }
-        &.show2 {
+        &.show_2 {
           min-width: calc((100% / 2) * 7);
           &.slider1 {
             left: calc(-1 * (100% / 2)); //點五次一次一格
@@ -221,7 +220,7 @@ $cellInfo-width: 100% / $cell-count;
             left: calc(-2 * (100% / 2)); //點五次
           }
         }
-        &.show3 {
+        &.show_3 {
           min-width: calc((100% / 3) * 7);
           &.slider1 {
             left: calc(-1 * (100% / 3)); //點五次
@@ -230,7 +229,7 @@ $cellInfo-width: 100% / $cell-count;
             left: calc(-2 * (100% / 3)); //點五次
           }
         }
-        &.show4 {
+        &.show_4 {
           min-width: calc((100% / 4) * 7);
           &.slider1 {
             left: calc(-1 * (100% / 4)); //點五次
@@ -251,11 +250,6 @@ $cellInfo-width: 100% / $cell-count;
         display: none;
       }
       .scrolled {
-        position: relative;
-        left: 0;
-        transition: none;
-        top: static;
-        // width: inherit;
         .cellInfo {
           width: 100%;
         }
@@ -290,16 +284,12 @@ $cellInfo-width: 100% / $cell-count;
       height: 401px;
 
       .endDate {
-        div {
-          // @include transform();
-          min-width: calc(100% / 3);
-        }
+        min-width: calc((100% / 3) * 7);
       }
       .priceShow {
-        width: inherit;
-        // min-width: calc(100% / 3);
+        min-width: calc((100% / 3) * 7);
         .cellInfo {
-          min-width: calc(100% / 3);
+          min-width: calc(100% / 7);
           width: 100%;
         }
       }

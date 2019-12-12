@@ -13,37 +13,37 @@
         },
         {
           "id": 2,
-          "price": "155681231",
+          "price": "15568",
           "backDate": "12/31(五)",
           "isCheaper": true
         },
         {
           "id": 3,
-          "price": "155680101",
+          "price": "15568",
           "backDate": "01/01(六)",
           "isCheaper": false
         },
         {
           "id": 4,
-          "price": "155680102",
+          "price": "15568",
           "backDate": "01/02(日)",
           "isCheaper": false
         },
         {
           "id": 5,
-          "price": "155680103",
+          "price": "15568",
           "backDate": "01/03(一)",
           "isCheaper": false
         },
         {
           "id": 6,
-          "price": "155680104",
+          "price": "15568",
           "backDate": "01/04(二)",
           "isCheaper": false
         },
         {
           "id": 7,
-          "price": "155680105",
+          "price": "15568",
           "backDate": "01/05(三)",
           "isCheaper": false
         }
