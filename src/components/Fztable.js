@@ -4,14 +4,17 @@ import tripData from "./tripData.json";
 
 class Fztable extends Component {
   static defaultProps = {
-    count: {
-      slide: 1, // [number]顯示滑動數
-      show: 6 // [number]show幾格儲存格
-    },
+    slide: 1, // [number]顯示滑動數
+    show: 3, // [number]show幾格儲存格
     speed: 0.3, // [number]移動時間
     whenClick: function($element) {
       console.log($element);
     }
+  };
+
+  state = {
+    scrolled: 0,
+    scroll_position: 0 //捲動位置
   };
 
   constructor(props) {
@@ -31,13 +34,13 @@ class Fztable extends Component {
   };
 
   onClick = e => {
-    let dateId = e.target.getAttribute("id");
+    let dateId = e.currentTarget.getAttribute("id");
     let dateRow = Math.floor(dateId / 7);
     let dateCol = dateId % 7;
     let row = [];
     let col = [];
     let both = [];
-    this.props.whenClick(e.target);
+    this.props.whenClick(e.currentTarget);
     console.log("dateId", dateId);
     console.log("dateRow", dateRow);
     console.log("dateCol", dateCol);
@@ -55,7 +58,8 @@ class Fztable extends Component {
   };
 
   render() {
-    // console.log("tripData", tripData);
+    // let goRight = this.props.goRight ? "" :"d-none"
+    // let goLeft = this.props.goLeft ? "" : "d-none"
     return (
       <div className={`container d-flex ${"show_" + this.show}`}>
         <div className="d-flex">
@@ -123,10 +127,15 @@ class Fztable extends Component {
                 {tripData.date.map((arr1, idx1) => {
                   return arr1.data.map((arr2, idx2) => {
                     let id = idx1 * 7 + idx2;
-                    console.log("id", id);
+                    // console.log("id", id);
                     let cross =
                       this.state.cross.indexOf(id) === -1 ? "" : "cross";
+                    console.log("idx1", idx1);
+                    console.log("idx2", idx2);
+                    // console.log("id", id);
+                    console.log("active", this.state.active);
                     let active = id === this.state.active ? "active" : "";
+                    console.log("active", active);
                     const cheaper = [];
                     if (arr2.isCheaper === true) {
                       cheaper.push(
@@ -143,7 +152,7 @@ class Fztable extends Component {
                       Number(arr2.price).toLocaleString() === "非數值"
                         ? arr2.price
                         : Number(arr2.price).toLocaleString();
-                    // console.log(active);
+
                     // console.log(strPrice);
                     return (
                       <div
