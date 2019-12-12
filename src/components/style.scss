@@ -1,0 +1,345 @@
+$color: #222222;
+$m-width: 980px;
+$info-border: 1px solid #bbb;
+$cell-count: 7;
+$cellInfo-width: 100% / $cell-count;
+
+@mixin transform($property: right 0) {
+  -webkit-transform: $property;
+  -moz-transform: $property;
+  -ms-transform: $property;
+  -o-transform: $property;
+  transform: $property;
+}
+
+.d-flex {
+  display: flex;
+}
+.d-none {
+  display: none;
+}
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+.flex-col {
+  flex-direction: column;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.cross {
+  background: #f7f7f7;
+}
+.topBg {
+  background: #eaedf2;
+}
+.leftBg {
+  background: #f1f1f1;
+}
+.pd-4 {
+  padding: 3px 4px;
+}
+
+.newYear {
+  color: #24a07c;
+  font-size: 12px;
+  position: absolute;
+  top: -15px;
+  right: 15px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#root > div {
+  width: 100%;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  .goLeft {
+    padding: 8px 3px;
+    background: hsla(0, 0%, 67%, 0.5);
+    position: absolute;
+    left: 88px;
+    top: 50%;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+  }
+  .goRight {
+    padding: 8px 3px;
+    background: hsla(0, 0%, 67%, 0.5);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+  }
+  .leftTable {
+    width: 88px;
+    border-left: $info-border;
+    .pd-4 {
+      border-bottom: $info-border;
+    }
+    .dayOnly {
+      width: inherit;
+      font-size: 14px;
+      text-align: center;
+      border-right: $info-border;
+      div {
+        position: relative;
+        border-bottom: $info-border;
+        height: 50px;
+        line-height: 50px;
+        .newYear {
+          position: absolute;
+          top: -17px;
+          left: 45px;
+        }
+      }
+    }
+  }
+  .rightTable {
+    width: calc(100% - 88px);
+    border-left: $info-border;
+    position: relative;
+    overflow: hidden;
+    .endDate {
+      div {
+        width: calc(100% / 7);
+        height: 50px;
+        line-height: 50px;
+        background: #eaedf2;
+        border-right: $info-border;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative;
+      }
+    }
+
+    .priceShow {
+      width: 100%;
+      overflow: hidden;
+      .allPrice {
+        min-width: $cellInfo-width;
+        width: 100%;
+        flex-wrap: wrap;
+        .cellInfo {
+          position: relative;
+          height: 50px;
+          width: $cellInfo-width;
+          border-right: $info-border;
+          border-left: 1px solid transparent;
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid #e1e2e4;
+          box-sizing: border-box;
+          cursor: pointer;
+          font-size: 14px;
+          &.active {
+            background: #fff9e3;
+            border: 1px solid #fe8b88;
+          }
+          &:hover {
+            border: 1px solid #fe8b88;
+          }
+          &.select {
+            background: #f7f7f7;
+          }
+          .price {
+            color: $color;
+            margin: 4px;
+            font-size: 14px;
+            &:before {
+              content: "$";
+              display: inline-block;
+              color: $color;
+            }
+            &:after {
+              content: "起";
+              display: inline-block;
+              color: #9999;
+              font-size: 14px;
+              margin-left: 5px;
+            }
+          }
+          .cheaper {
+            color: #ff8e26;
+            font-size: 12px;
+            &:before {
+              position: absolute;
+              top: 0px;
+              left: 20px;
+              content: "最便宜";
+            }
+            &:after {
+              content: "";
+              width: 0;
+              height: 0;
+              position: absolute;
+              left: -1px;
+              top: -1px;
+              border-top: 10px solid #ff8e26;
+              border-right: 10px solid transparent;
+              border-bottom: 10px solid transparent;
+              border-left: 10px solid #ff8e26;
+            }
+          }
+        }
+
+        &.show1 {
+          min-width: calc((100% / 1) * 7); //顯示幾格
+          &.slider1 {
+            left: calc(-1 * (100% / 1)); //點六次
+          }
+          &.slider2 {
+            left: calc(-2 * (100% / 1)); //點三次
+          }
+        }
+        &.show2 {
+          min-width: calc((100% / 2) * 7);
+          &.slider1 {
+            left: calc(-1 * (100% / 2)); //點五次一次一格
+          }
+          &.slider2 {
+            left: calc(-2 * (100% / 2)); //點五次
+          }
+        }
+        &.show3 {
+          min-width: calc((100% / 3) * 7);
+          &.slider1 {
+            left: calc(-1 * (100% / 3)); //點五次
+          }
+          &.slider2 {
+            left: calc(-2 * (100% / 3)); //點五次
+          }
+        }
+        &.show4 {
+          min-width: calc((100% / 4) * 7);
+          &.slider1 {
+            left: calc(-1 * (100% / 4)); //點五次
+          }
+          &.slider2 {
+            left: calc(-2 * (100% / 4)); //點五次
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 980px) {
+  .container {
+    .rightTable {
+      position: relative;
+      .slide_btn {
+        display: none;
+      }
+      .scrolled {
+        position: relative;
+        left: 0;
+        transition: none;
+        top: static;
+        // width: inherit;
+        .cellInfo {
+          width: 100%;
+        }
+      }
+    }
+    .goLeft,
+    .goRight {
+      visibility: hidden;
+    }
+  }
+}
+@media screen and (max-width: 980px) {
+  .container {
+    .slide_btn {
+      &.goLeft {
+        left: 0;
+      }
+      &.goRight {
+        right: 0;
+      }
+      &.btn_hide {
+        display: none;
+      }
+      .scrolled {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+    .rightTable {
+      position: relative;
+      height: 401px;
+
+      .endDate {
+        div {
+          // @include transform();
+          min-width: calc(100% / 3);
+        }
+      }
+      .priceShow {
+        width: inherit;
+        // min-width: calc(100% / 3);
+        .cellInfo {
+          min-width: calc(100% / 3);
+          width: 100%;
+        }
+      }
+    }
+    @for $i from 1 through 4 {
+      .show_#{i} {
+        min-width: 100% / $i;
+      }
+    }
+    // 一格
+    &.show_1 {
+      .rightTable {
+        .scrolled {
+          width: calc(100% * 7);
+        }
+      }
+    }
+    // 兩格
+    &.show_2 {
+      .rightTable {
+        .scrolled {
+          width: calc(50% * 7);
+        }
+      }
+    }
+    // 三格
+    &.show_3 {
+      .rightTable {
+        .scrolled {
+          width: calc(33.33333% * 7);
+        }
+      }
+    }
+    // 四格
+    &.show_4 {
+      .rightTable {
+        .scrolled {
+          width: calc(25% * 7);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,335 @@
+{
+  "status": 200,
+  "msg": "資料取得成功",
+  "date": [
+    {
+      "goDate": "12/27(一)",
+      "data": [
+        {
+          "id": 1,
+          "price": " 一 一 ",
+          "backDate": "12/30(四)",
+          "isCheaper": false
+        },
+        {
+          "id": 2,
+          "price": "155681231",
+          "backDate": "12/31(五)",
+          "isCheaper": true
+        },
+        {
+          "id": 3,
+          "price": "155680101",
+          "backDate": "01/01(六)",
+          "isCheaper": false
+        },
+        {
+          "id": 4,
+          "price": "155680102",
+          "backDate": "01/02(日)",
+          "isCheaper": false
+        },
+        {
+          "id": 5,
+          "price": "155680103",
+          "backDate": "01/03(一)",
+          "isCheaper": false
+        },
+        {
+          "id": 6,
+          "price": "155680104",
+          "backDate": "01/04(二)",
+          "isCheaper": false
+        },
+        {
+          "id": 7,
+          "price": "155680105",
+          "backDate": "01/05(三)",
+          "isCheaper": false
+        }
+      ]
+    },
+    {
+      "goDate": "12/28(二)",
+      "data": [
+        {
+          "id": 1,
+          "price": "15568",
+          "backDate": "12/30(四)",
+          "isCheaper": false
+        },
+        {
+          "id": 2,
+          "price": "15568",
+          "backDate": "12/31(五)",
+          "isCheaper": false
+        },
+        {
+          "id": 3,
+          "price": "15568",
+          "backDate": "01/01(六)",
+          "isCheaper": false
+        },
+        {
+          "id": 4,
+          "price": "15568",
+          "backDate": "01/02(日)",
+          "isCheaper": false
+        },
+        {
+          "id": 5,
+          "price": "15568",
+          "backDate": "01/03(一)",
+          "isCheaper": false
+        },
+        {
+          "id": 6,
+          "price": "15568",
+          "backDate": "01/04(二)",
+          "isCheaper": true
+        },
+        {
+          "id": 7,
+          "price": "15568",
+          "backDate": "01/05(三)",
+          "isCheaper": false
+        }
+      ]
+    },
+    {
+      "goDate": "12/29(三)",
+      "data": [
+        {
+          "id": 1,
+          "price": "查看",
+          "backDate": "12/30(四)",
+          "isCheaper": false
+        },
+        {
+          "id": 2,
+          "price": "15568",
+          "backDate": "12/31(五)",
+          "isCheaper": false
+        },
+        {
+          "id": 3,
+          "price": "15568",
+          "backDate": "01/01(六)",
+          "isCheaper": false
+        },
+        {
+          "id": 4,
+          "price": "15568",
+          "backDate": "01/02(日)",
+          "isCheaper": false
+        },
+        {
+          "id": 5,
+          "price": "15568",
+          "backDate": "01/03(一)",
+          "isCheaper": false
+        },
+        {
+          "id": 6,
+          "price": "15568",
+          "backDate": "01/04(二)",
+          "isCheaper": false
+        },
+        {
+          "id": 7,
+          "price": "15568",
+          "backDate": "01/05(三)",
+          "isCheaper": false
+        }
+      ]
+    },
+    {
+      "goDate": "12/30(四)",
+      "data": [
+        {
+          "id": 1,
+          "price": "查看",
+          "backDate": "12/30(四)",
+          "isCheaper": false
+        },
+        {
+          "id": 2,
+          "price": "查看",
+          "backDate": "12/31(五)",
+          "isCheaper": false
+        },
+        {
+          "id": 3,
+          "price": "15568",
+          "backDate": "01/01(六)",
+          "isCheaper": false
+        },
+        {
+          "id": 4,
+          "price": "15568",
+          "backDate": "01/02(日)",
+          "isCheaper": true
+        },
+        {
+          "id": 5,
+          "price": "15568",
+          "backDate": "01/03(一)",
+          "isCheaper": false
+        },
+        {
+          "id": 6,
+          "price": "15568",
+          "backDate": "01/04(二)",
+          "isCheaper": false
+        },
+        {
+          "id": 7,
+          "price": "15568",
+          "backDate": "01/05(三)",
+          "isCheaper": false
+        }
+      ]
+    },
+    {
+      "goDate": "12/31(五)",
+      "data": [
+        {
+          "id": 1,
+          "price": "查看",
+          "backDate": "12/30(四)",
+          "isCheaper": false
+        },
+        {
+          "id": 2,
+          "price": "查看",
+          "backDate": "12/31(五)",
+          "isCheaper": false
+        },
+        {
+          "id": 3,
+          "price": "查看",
+          "backDate": "01/01(六)",
+          "isCheaper": false
+        },
+        {
+          "id": 4,
+          "price": "15568",
+          "backDate": "01/02(日)",
+          "isCheaper": false
+        },
+        {
+          "id": 5,
+          "price": "15568",
+          "backDate": "01/03(一)",
+          "isCheaper": false
+        },
+        {
+          "id": 6,
+          "price": "15568",
+          "backDate": "01/04(二)",
+          "isCheaper": false
+        },
+        {
+          "id": 7,
+          "price": "15568",
+          "backDate": "01/05(三)",
+          "isCheaper": false
+        }
+      ]
+    },
+    {
+      "goDate": "01/01(六)",
+      "data": [
+        {
+          "id": 1,
+          "price": "查看",
+          "backDate": "12/30(四)",
+          "isCheaper": false
+        },
+        {
+          "id": 2,
+          "price": "查看",
+          "backDate": "12/31(五)",
+          "isCheaper": false
+        },
+        {
+          "id": 3,
+          "price": "查看",
+          "backDate": "01/01(六)",
+          "isCheaper": false
+        },
+        {
+          "id": 4,
+          "price": "查看",
+          "backDate": "01/02(日)",
+          "isCheaper": false
+        },
+        {
+          "id": 5,
+          "price": "15568",
+          "backDate": "01/03(一)",
+          "isCheaper": false
+        },
+        {
+          "id": 6,
+          "price": "15568",
+          "backDate": "01/04(二)",
+          "isCheaper": false
+        },
+        {
+          "id": 7,
+          "price": "15568",
+          "backDate": "01/05(三)",
+          "isCheaper": false
+        }
+      ]
+    },
+    {
+      "goDate": "01/02(日)",
+      "data": [
+        {
+          "id": 1,
+          "price": "查看",
+          "backDate": "12/30(四)",
+          "isCheaper": false
+        },
+        {
+          "id": 2,
+          "price": "查看",
+          "backDate": "12/31(五)",
+          "isCheaper": false
+        },
+        {
+          "id": 3,
+          "price": "查看",
+          "backDate": "01/01(六)",
+          "isCheaper": false
+        },
+        {
+          "id": 4,
+          "price": "查看",
+          "backDate": "01/02(日)",
+          "isCheaper": false
+        },
+        {
+          "id": 5,
+          "price": "查看",
+          "backDate": "01/03(一)",
+          "isCheaper": false
+        },
+        {
+          "id": 6,
+          "price": "15568",
+          "backDate": "01/04(二)",
+          "isCheaper": false
+        },
+        {
+          "id": 7,
+          "price": "15568",
+          "backDate": "01/05(三)",
+          "isCheaper": false
+        }
+      ]
+    }
+  ]
+}

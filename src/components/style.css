@@ -1,0 +1,365 @@
+@charset "UTF-8";
+.d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.d-none {
+  display: none;
+}
+
+.flex-center {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.flex-col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.cross {
+  background: #f7f7f7;
+}
+
+.topBg {
+  background: #eaedf2;
+}
+
+.leftBg {
+  background: #f1f1f1;
+}
+
+.pd-4 {
+  padding: 3px 4px;
+}
+
+.newYear {
+  color: #24a07c;
+  font-size: 12px;
+  position: absolute;
+  top: -15px;
+  right: 15px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#root > div {
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.container .goLeft {
+  padding: 8px 3px;
+  background: rgba(171, 171, 171, 0.5);
+  position: absolute;
+  left: 88px;
+  top: 50%;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.container .goRight {
+  padding: 8px 3px;
+  background: rgba(171, 171, 171, 0.5);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.container .leftTable {
+  width: 88px;
+  border-left: 1px solid #bbb;
+}
+
+.container .leftTable .pd-4 {
+  border-bottom: 1px solid #bbb;
+}
+
+.container .leftTable .dayOnly {
+  width: inherit;
+  font-size: 14px;
+  text-align: center;
+  border-right: 1px solid #bbb;
+}
+
+.container .leftTable .dayOnly div {
+  position: relative;
+  border-bottom: 1px solid #bbb;
+  height: 50px;
+  line-height: 50px;
+}
+
+.container .leftTable .dayOnly div .newYear {
+  position: absolute;
+  top: -17px;
+  left: 45px;
+}
+
+.container .rightTable {
+  width: calc(100% - 88px);
+  border-left: 1px solid #bbb;
+  position: relative;
+  overflow: hidden;
+}
+
+.container .rightTable .endDate div {
+  width: calc(100% / 7);
+  height: 50px;
+  line-height: 50px;
+  background: #eaedf2;
+  border-right: 1px solid #bbb;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+  position: relative;
+}
+
+.container .rightTable .priceShow {
+  width: 100%;
+  overflow: hidden;
+}
+
+.container .rightTable .priceShow .allPrice {
+  min-width: 14.28571%;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo {
+  position: relative;
+  height: 50px;
+  width: 14.28571%;
+  border-right: 1px solid #bbb;
+  border-left: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid #e1e2e4;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo.active {
+  background: #fff9e3;
+  border: 1px solid #fe8b88;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo:hover {
+  border: 1px solid #fe8b88;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo.select {
+  background: #f7f7f7;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo .price {
+  color: #222222;
+  margin: 4px;
+  font-size: 14px;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo .price:before {
+  content: "$";
+  display: inline-block;
+  color: #222222;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo .price:after {
+  content: "起";
+  display: inline-block;
+  color: #9999;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo .cheaper {
+  color: #ff8e26;
+  font-size: 12px;
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo .cheaper:before {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  content: "最便宜";
+}
+
+.container .rightTable .priceShow .allPrice .cellInfo .cheaper:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  border-top: 10px solid #ff8e26;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #ff8e26;
+}
+
+.container .rightTable .priceShow .allPrice.show1 {
+  min-width: calc((100% / 1) * 7);
+}
+
+.container .rightTable .priceShow .allPrice.show1.slider1 {
+  left: calc(-1 * (100% / 1));
+}
+
+.container .rightTable .priceShow .allPrice.show1.slider2 {
+  left: calc(-2 * (100% / 1));
+}
+
+.container .rightTable .priceShow .allPrice.show2 {
+  min-width: calc((100% / 2) * 7);
+}
+
+.container .rightTable .priceShow .allPrice.show2.slider1 {
+  left: calc(-1 * (100% / 2));
+}
+
+.container .rightTable .priceShow .allPrice.show2.slider2 {
+  left: calc(-2 * (100% / 2));
+}
+
+.container .rightTable .priceShow .allPrice.show3 {
+  min-width: calc((100% / 3) * 7);
+}
+
+.container .rightTable .priceShow .allPrice.show3.slider1 {
+  left: calc(-1 * (100% / 3));
+}
+
+.container .rightTable .priceShow .allPrice.show3.slider2 {
+  left: calc(-2 * (100% / 3));
+}
+
+.container .rightTable .priceShow .allPrice.show4 {
+  min-width: calc((100% / 4) * 7);
+}
+
+.container .rightTable .priceShow .allPrice.show4.slider1 {
+  left: calc(-1 * (100% / 4));
+}
+
+.container .rightTable .priceShow .allPrice.show4.slider2 {
+  left: calc(-2 * (100% / 4));
+}
+
+@media screen and (min-width: 980px) {
+  .container .rightTable {
+    position: relative;
+  }
+  .container .rightTable .slide_btn {
+    display: none;
+  }
+  .container .rightTable .scrolled {
+    position: relative;
+    left: 0;
+    -webkit-transition: none;
+    transition: none;
+    top: static;
+  }
+  .container .rightTable .scrolled .cellInfo {
+    width: 100%;
+  }
+  .container .goLeft,
+  .container .goRight {
+    visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .container .slide_btn.goLeft {
+    left: 0;
+  }
+  .container .slide_btn.goRight {
+    right: 0;
+  }
+  .container .slide_btn.btn_hide {
+    display: none;
+  }
+  .container .slide_btn .scrolled {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .container .rightTable {
+    position: relative;
+    height: 401px;
+  }
+  .container .rightTable .endDate div {
+    min-width: calc(100% / 3);
+  }
+  .container .rightTable .priceShow {
+    width: inherit;
+  }
+  .container .rightTable .priceShow .cellInfo {
+    min-width: calc(100% / 3);
+    width: 100%;
+  }
+  .container .show_i {
+    min-width: 100%;
+  }
+  .container .show_i {
+    min-width: 50%;
+  }
+  .container .show_i {
+    min-width: 33.33333%;
+  }
+  .container .show_i {
+    min-width: 25%;
+  }
+  .container.show_1 .rightTable .scrolled {
+    width: calc(100% * 7);
+  }
+  .container.show_2 .rightTable .scrolled {
+    width: calc(50% * 7);
+  }
+  .container.show_3 .rightTable .scrolled {
+    width: calc(33.33333% * 7);
+  }
+  .container.show_4 .rightTable .scrolled {
+    width: calc(25% * 7);
+  }
+}
+/*# sourceMappingURL=style.css.map */
