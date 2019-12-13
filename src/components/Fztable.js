@@ -4,35 +4,109 @@ import tripData from "./tripData.json";
 
 class Fztable extends Component {
   static defaultProps = {
-    slide: 1, // [number]顯示滑動數
-    show: 3, // [number]show幾格儲存格
+    count: {
+      slide: 1, // [number]顯示滑動數
+      show: 3 // [number]show幾格儲存格
+    },
     speed: 0.3, // [number]移動時間
     whenClick: function($element) {
       console.log($element);
     }
   };
-
-  state = {
-    scrolled: 0,
-    scroll_position: 0 //捲動位置
-  };
-
   constructor(props) {
     super(props);
-    this.status = ["show_1", "show_2", "show_3", "show_4"]; //預設移動數
+    this.status = ["show1", "show2", "show3", "show4"];
     this.state = {
       cross: [], //存放十字選取的陣列
-      active: -1 //移動的class
+      active: -1, //是否加上active的class
+      arrowLeft: 0, //左按鈕狀態
+      arrowRight: 1, //右按鈕狀態
+      scroll_position: 0, //捲動框位置
+      scroll_style: {
+        transition: this.speed + "s",
+        left: 0
+      }
     };
   }
+  init = () => {
+    if (
+      Number(this.props.count.show) > 0 &&
+      Number(this.props.count.show) < 5
+    ) {
+      var showList = this.status[this.props.count.show - 1];
+      return showList;
+    }
+  };
+
+  state = {
+    clickTimes: 0, //已按幾次
+    goRight: 1, //箭頭右
+    goLeft: 0, //箭頭左 displayNone
+    speed: 0
+  };
 
   slideLeft = () => {
     console.log("slideLeft");
-  };
-  slideRight = () => {
-    console.log("slideRight");
+    const slide = this.props.count.slide;
+    const show = this.props.count.show;
+    let scroll_position = this.state.scroll_position - (100 / show) * slide;
+    console.log("左移移動框位置:", scroll_position);
+    let arrowLeft; //判斷左箭頭
+    let moveLeft; //紀錄左移移動數
+    let clickCount = this.state.clickTimes; //點擊次數
+    console.log("clickCount", clickCount);
+
+    if (this.state.clickTimes !== 0) {
+      moveLeft = scroll_position;
+      clickCount = this.state.clickTimes + 1;
+      arrowLeft = 1;
+      if (clickCount === 0) {
+        moveLeft = scroll_position;
+        arrowLeft = 0;
+      } else if (this.state.clickTimes === 0) {
+        moveLeft = scroll_position;
+        arrowLeft = 0;
+      }
+    }
+
+    this.setState({
+      scroll_position: scroll_position,
+      scroll_style: {
+        transition: this.props.speed + "s",
+        left: -scroll_position + "%"
+      },
+      clickTimes: clickCount,
+      arrowLeft: 1
+    });
+    console.log("scroll_position", scroll_position);
   };
 
+  slideRight = () => {
+    console.log("slideRight");
+    const slide = this.props.count.slide;
+    const show = this.props.count.show;
+    console.log(this.props.speed);
+    let scroll_position = this.state.scroll_position + (100 / show) * slide;
+    console.log("右移移動框位置:", scroll_position);
+
+    let moveRight; //紀錄右移移動數
+    let clickCount = this.state.clickTimes; //點擊次數
+
+    if (scroll_position >= 0) {
+      scroll_position = scroll_position;
+      this.setState({
+        arrowLeft: 0
+      });
+      console.log("scroll_positio到底是:", scroll_position);
+    }
+    this.setState({
+      scroll_position: scroll_position,
+      scroll_style: {
+        transition: this.props.speed + "s",
+        left: -scroll_position + "%"
+      }
+    });
+  };
   onClick = e => {
     let dateId = e.currentTarget.getAttribute("id");
     let dateRow = Math.floor(dateId / 7);
@@ -50,23 +124,30 @@ class Fztable extends Component {
       col.push(7 * i + dateCol); //等於每一格的位置
     }
     both = [...row, ...col]; //合併陣列
+    console.log("dateId", dateId, "is", typeof dateId); //string
     this.setState({
       cross: both,
-      active: dateId
+      active: Number(dateId)
     });
     console.log(both);
   };
 
   render() {
-    // let goRight = this.props.goRight ? "" :"d-none"
-    // let goLeft = this.props.goLeft ? "" : "d-none"
+    let arrowLeft = this.state.arrowLeft === 0 ? "d-none" : "";
+    let arrowRight = this.state.arrowRight === 0 ? "d-none" : "";
     return (
-      <div className={`container d-flex ${"show_" + this.show}`}>
-        <div className="d-flex">
-          <div className={`slideBtn goLeft`} onClick={this.slideLeft}>
+      <div className="container d-flex">
+        <div>
+          <div
+            className={`slideBtn goLeft ${arrowLeft}`}
+            onClick={this.slideLeft}
+          >
             <i className="fas fa-chevron-left" />
           </div>
-          <div className={`slideBtn goRight`} onClick={this.slideRight}>
+          <div
+            className={`slideBtn goRight ${this.state.arrowRight}`}
+            onClick={this.slideRight}
+          >
             <i className="fas fa-chevron-right" />
           </div>
         </div>
@@ -87,7 +168,6 @@ class Fztable extends Component {
                   </p>
                 );
               }
-              // console.log("yearrArr1", yearrArr1);
               return (
                 <div key={idx} className="d-flex flex-center">
                   {ele.goDate}
@@ -97,13 +177,12 @@ class Fztable extends Component {
             })}
           </div>
         </div>
-        <div className="rightTable">
-          {/* 滾動區域 */}
-          <div className="scrolled">
+        <div className={"rightTable"}>
+          {/* 滾動區域!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
+          <div className="scrolled" style={this.state.scroll_style}>
             <div className="endDate d-flex flex-center">
               {tripData.date.map((ele, idx) => {
                 // console.log("ele.data", ele.data[idx]["id"]);
-                // console.log("ele.data", ele.data[idx]["backDate"]);
                 const yearrArr = []; //存放,可以直接{yearrArr}帶入
                 if (ele.data[idx]["backDate"] === "01/01(六)") {
                   yearrArr.push(
@@ -112,7 +191,6 @@ class Fztable extends Component {
                     </p>
                   );
                 }
-                // console.log("yearrArr", yearrArr);
                 return (
                   <div key={idx} className="d-flex flex-center">
                     {ele.data[idx]["backDate"]}
@@ -130,12 +208,12 @@ class Fztable extends Component {
                     // console.log("id", id);
                     let cross =
                       this.state.cross.indexOf(id) === -1 ? "" : "cross";
-                    console.log("idx1", idx1);
-                    console.log("idx2", idx2);
+                    // console.log("idx1", idx1);
+                    // console.log("idx2", idx2);
                     // console.log("id", id);
-                    console.log("active", this.state.active);
                     let active = id === this.state.active ? "active" : "";
-                    console.log("active", active);
+                    // console.log("id:", id, "active:", this.state.active); 除bug最好的方法就是console.log
+
                     const cheaper = [];
                     if (arr2.isCheaper === true) {
                       cheaper.push(

@@ -121,121 +121,87 @@ $cellInfo-width: 100% / $cell-count;
     border-left: $info-border;
     position: relative;
     overflow: hidden;
-    .endDate {
-      div {
-        width: calc(100% / 7);
-        height: 50px;
-        line-height: 50px;
-        background: #eaedf2;
-        border-right: $info-border;
-        box-sizing: border-box;
-        text-align: center;
-        position: relative;
-      }
-    }
-
-    .priceShow {
-      width: 100%;
-      overflow: hidden;
-      .allPrice {
-        min-width: calc(100% / 7);
-        flex-wrap: wrap;
-        .cellInfo {
-          position: relative;
+    .scrolled {
+      min-width: calc(100% / 7);
+      .endDate {
+        div {
+          width: calc(100% / 7);
           height: 50px;
-          width: $cellInfo-width;
+          line-height: 50px;
+          background: #eaedf2;
           border-right: $info-border;
-          border-left: 1px solid transparent;
-          border-top: 1px solid transparent;
-          border-bottom: 1px solid #e1e2e4;
+          border-bottom: $info-border;
           box-sizing: border-box;
-          cursor: pointer;
-          font-size: 14px;
-          &.active {
-            background: #fff9e3;
-            border: 1px solid #fe8b88;
-          }
-          &:hover {
-            border: 1px solid #fe8b88;
-          }
-          &.select {
-            background: #f7f7f7;
-          }
-          .price {
-            color: $color;
-            margin: 4px;
-            font-size: 14px;
-            &:before {
-              content: "$";
-              display: inline-block;
-              color: $color;
-            }
-            &:after {
-              content: "起";
-              display: inline-block;
-              color: #9999;
-              font-size: 14px;
-              margin-left: 5px;
-            }
-          }
-          .cheaper {
-            color: #ff8e26;
-            font-size: 12px;
-            &:before {
-              position: absolute;
-              top: 0px;
-              left: 20px;
-              content: "最便宜";
-            }
-            &:after {
-              content: "";
-              width: 0;
-              height: 0;
-              position: absolute;
-              left: -1px;
-              top: -1px;
-              border-top: 10px solid #ff8e26;
-              border-right: 10px solid transparent;
-              border-bottom: 10px solid transparent;
-              border-left: 10px solid #ff8e26;
-            }
-          }
+          text-align: center;
+          position: relative;
         }
+      }
 
-        &.show_1 {
-          min-width: calc((100% / 1) * 7); //顯示幾格
-          &.slider1 {
-            left: calc(-1 * (100% / 1)); //點六次
-          }
-          &.slider2 {
-            left: calc(-2 * (100% / 1)); //點三次
-          }
-        }
-        &.show_2 {
-          min-width: calc((100% / 2) * 7);
-          &.slider1 {
-            left: calc(-1 * (100% / 2)); //點五次一次一格
-          }
-          &.slider2 {
-            left: calc(-2 * (100% / 2)); //點五次
-          }
-        }
-        &.show_3 {
-          min-width: calc((100% / 3) * 7);
-          &.slider1 {
-            left: calc(-1 * (100% / 3)); //點五次
-          }
-          &.slider2 {
-            left: calc(-2 * (100% / 3)); //點五次
-          }
-        }
-        &.show_4 {
-          min-width: calc((100% / 4) * 7);
-          &.slider1 {
-            left: calc(-1 * (100% / 4)); //點五次
-          }
-          &.slider2 {
-            left: calc(-2 * (100% / 4)); //點五次
+      .priceShow {
+        width: 100%;
+        overflow: hidden;
+        .allPrice {
+          flex-wrap: wrap;
+          .cellInfo {
+            position: relative;
+            height: 50px;
+            width: $cellInfo-width;
+            border-right: $info-border;
+            border-left: 1px solid transparent;
+            border-top: 1px solid transparent;
+            border-bottom: 1px solid #e1e2e4;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-size: 14px;
+            &.active {
+              background: #fff9e3;
+              border: 1px solid #fe8b88;
+            }
+            &:hover {
+              border: 1px solid #fe8b88;
+            }
+            &.select {
+              background: #f7f7f7;
+            }
+            .price {
+              color: $color;
+              margin: 4px;
+              font-size: 14px;
+              &:before {
+                content: "$";
+                display: inline-block;
+                color: $color;
+              }
+              &:after {
+                content: "起";
+                display: inline-block;
+                color: #9999;
+                font-size: 14px;
+                margin-left: 5px;
+              }
+            }
+            .cheaper {
+              color: #ff8e26;
+              font-size: 12px;
+              &:before {
+                position: absolute;
+                top: 0px;
+                left: 20px;
+                content: "最便宜";
+              }
+              &:after {
+                content: "";
+                width: 0;
+                height: 0;
+                position: absolute;
+                left: -1px;
+                top: -1px;
+                border-top: 10px solid #ff8e26;
+                border-right: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-left: 10px solid #ff8e26;
+              }
+            }
           }
         }
       }
@@ -273,21 +239,17 @@ $cellInfo-width: 100% / $cell-count;
       &.btn_hide {
         display: none;
       }
-      .scrolled {
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
     }
     .rightTable {
       position: relative;
       height: 401px;
-
-      .endDate {
+      .scrolled {
         min-width: calc((100% / 3) * 7);
+        position: absolute;
+        left: 0;
+        top: 0;
       }
       .priceShow {
-        min-width: calc((100% / 3) * 7);
         .cellInfo {
           min-width: calc(100% / 7);
           width: 100%;
@@ -295,12 +257,12 @@ $cellInfo-width: 100% / $cell-count;
       }
     }
     @for $i from 1 through 4 {
-      .show_#{i} {
+      .show#{i} {
         min-width: 100% / $i;
       }
     }
     // 一格
-    &.show_1 {
+    &.show1 {
       .rightTable {
         .scrolled {
           width: calc(100% * 7);
@@ -308,7 +270,7 @@ $cellInfo-width: 100% / $cell-count;
       }
     }
     // 兩格
-    &.show_2 {
+    &.show2 {
       .rightTable {
         .scrolled {
           width: calc(50% * 7);
@@ -316,7 +278,7 @@ $cellInfo-width: 100% / $cell-count;
       }
     }
     // 三格
-    &.show_3 {
+    &.show3 {
       .rightTable {
         .scrolled {
           width: calc(33.33333% * 7);
@@ -324,7 +286,7 @@ $cellInfo-width: 100% / $cell-count;
       }
     }
     // 四格
-    &.show_4 {
+    &.show4 {
       .rightTable {
         .scrolled {
           width: calc(25% * 7);
