@@ -80,6 +80,7 @@ $cellInfo-width: 100% / $cell-count;
     text-align: center;
     color: #fff;
     cursor: pointer;
+    display: none;
   }
   .goRight {
     padding: 8px 3px;
@@ -139,68 +140,67 @@ $cellInfo-width: 100% / $cell-count;
 
       .priceShow {
         width: 100%;
+        flex-wrap: wrap;
         overflow: hidden;
-        .allPrice {
-          flex-wrap: wrap;
-          .cellInfo {
-            position: relative;
-            height: 50px;
-            width: $cellInfo-width;
-            border-right: $info-border;
-            border-left: 1px solid transparent;
-            border-top: 1px solid transparent;
-            border-bottom: 1px solid #e1e2e4;
-            box-sizing: border-box;
-            cursor: pointer;
+
+        .cellInfo {
+          position: relative;
+          height: 50px;
+          width: $cellInfo-width;
+          border-right: $info-border;
+          border-left: 1px solid transparent;
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid #e1e2e4;
+          box-sizing: border-box;
+          cursor: pointer;
+          font-size: 14px;
+          &.active {
+            background: #fff9e3;
+            border: 1px solid #fe8b88;
+          }
+          &:hover {
+            border: 1px solid #fe8b88;
+          }
+          &.select {
+            background: #f7f7f7;
+          }
+          .price {
+            color: $color;
+            margin: 4px;
             font-size: 14px;
-            &.active {
-              background: #fff9e3;
-              border: 1px solid #fe8b88;
-            }
-            &:hover {
-              border: 1px solid #fe8b88;
-            }
-            &.select {
-              background: #f7f7f7;
-            }
-            .price {
+            &:before {
+              content: "$";
+              display: inline-block;
               color: $color;
-              margin: 4px;
-              font-size: 14px;
-              &:before {
-                content: "$";
-                display: inline-block;
-                color: $color;
-              }
-              &:after {
-                content: "起";
-                display: inline-block;
-                color: #9999;
-                font-size: 14px;
-                margin-left: 5px;
-              }
             }
-            .cheaper {
-              color: #ff8e26;
-              font-size: 12px;
-              &:before {
-                position: absolute;
-                top: 0px;
-                left: 20px;
-                content: "最便宜";
-              }
-              &:after {
-                content: "";
-                width: 0;
-                height: 0;
-                position: absolute;
-                left: -1px;
-                top: -1px;
-                border-top: 10px solid #ff8e26;
-                border-right: 10px solid transparent;
-                border-bottom: 10px solid transparent;
-                border-left: 10px solid #ff8e26;
-              }
+            &:after {
+              content: "起";
+              display: inline-block;
+              color: #9999;
+              font-size: 14px;
+              margin-left: 5px;
+            }
+          }
+          .cheaper {
+            color: #ff8e26;
+            font-size: 12px;
+            &:before {
+              position: absolute;
+              top: 0px;
+              left: 20px;
+              content: "最便宜";
+            }
+            &:after {
+              content: "";
+              width: 0;
+              height: 0;
+              position: absolute;
+              left: -1px;
+              top: -1px;
+              border-top: 10px solid #ff8e26;
+              border-right: 10px solid transparent;
+              border-bottom: 10px solid transparent;
+              border-left: 10px solid #ff8e26;
             }
           }
         }
@@ -242,54 +242,32 @@ $cellInfo-width: 100% / $cell-count;
     }
     .rightTable {
       position: relative;
-      height: 401px;
       .scrolled {
         min-width: calc((100% / 3) * 7);
         position: absolute;
         left: 0;
         top: 0;
+        // 一格
+        &.show1 {
+          min-width: calc((100% / 1) * 7);
+        }
+        // 兩格
+        &.show2 {
+          min-width: calc((100% / 2) * 7);
+        }
+        // 三格
+        &.show3 {
+          min-width: calc((100% / 3) * 7);
+        }
+        // 四格
+        &.show4 {
+          min-width: calc((100% / 4) * 7);
+        }
       }
       .priceShow {
         .cellInfo {
           min-width: calc(100% / 7);
           width: 100%;
-        }
-      }
-    }
-    @for $i from 1 through 4 {
-      .show#{i} {
-        min-width: 100% / $i;
-      }
-    }
-    // 一格
-    &.show1 {
-      .rightTable {
-        .scrolled {
-          width: calc(100% * 7);
-        }
-      }
-    }
-    // 兩格
-    &.show2 {
-      .rightTable {
-        .scrolled {
-          width: calc(50% * 7);
-        }
-      }
-    }
-    // 三格
-    &.show3 {
-      .rightTable {
-        .scrolled {
-          width: calc(33.33333% * 7);
-        }
-      }
-    }
-    // 四格
-    &.show4 {
-      .rightTable {
-        .scrolled {
-          width: calc(25% * 7);
         }
       }
     }

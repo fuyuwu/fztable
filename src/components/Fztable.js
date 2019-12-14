@@ -95,7 +95,7 @@ class Fztable extends Component {
     if (scroll_position >= 0) {
       scroll_position = scroll_position;
       this.setState({
-        arrowLeft: 0
+        arrowLeft: 1
       });
       console.log("scroll_positio到底是:", scroll_position);
     }
@@ -135,6 +135,7 @@ class Fztable extends Component {
   render() {
     let arrowLeft = this.state.arrowLeft === 0 ? "d-none" : "";
     let arrowRight = this.state.arrowRight === 0 ? "d-none" : "";
+    let showList = this.init();
     return (
       <div className="container d-flex">
         <div>
@@ -179,7 +180,10 @@ class Fztable extends Component {
         </div>
         <div className={"rightTable"}>
           {/* 滾動區域!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-          <div className="scrolled" style={this.state.scroll_style}>
+          <div
+            className={`scrolled ${showList}`}
+            style={this.state.scroll_style}
+          >
             <div className="endDate d-flex flex-center">
               {tripData.date.map((ele, idx) => {
                 // console.log("ele.data", ele.data[idx]["id"]);
@@ -192,7 +196,7 @@ class Fztable extends Component {
                   );
                 }
                 return (
-                  <div key={idx} className="d-flex flex-center">
+                  <div key={idx} className={`d-flex flex-center`}>
                     {ele.data[idx]["backDate"]}
                     {yearrArr}
                   </div>
@@ -201,55 +205,53 @@ class Fztable extends Component {
             </div>
             {/* isNaN() 函式會判斷某個數值是不是NaN-->判斷price,'--','查看' */}
             <div className="priceShow d-flex">
-              <div className="allPrice d-flex flex-center">
-                {tripData.date.map((arr1, idx1) => {
-                  return arr1.data.map((arr2, idx2) => {
-                    let id = idx1 * 7 + idx2;
-                    // console.log("id", id);
-                    let cross =
-                      this.state.cross.indexOf(id) === -1 ? "" : "cross";
-                    // console.log("idx1", idx1);
-                    // console.log("idx2", idx2);
-                    // console.log("id", id);
-                    let active = id === this.state.active ? "active" : "";
-                    // console.log("id:", id, "active:", this.state.active); 除bug最好的方法就是console.log
+              {tripData.date.map((arr1, idx1) => {
+                return arr1.data.map((arr2, idx2) => {
+                  let id = idx1 * 7 + idx2;
+                  // console.log("id", id);
+                  let cross =
+                    this.state.cross.indexOf(id) === -1 ? "" : "cross";
+                  // console.log("idx1", idx1);
+                  // console.log("idx2", idx2);
+                  // console.log("id", id);
+                  let active = id === this.state.active ? "active" : "";
+                  // console.log("id:", id, "active:", this.state.active); 除bug最好的方法就是console.log
 
-                    const cheaper = [];
-                    if (arr2.isCheaper === true) {
-                      cheaper.push(
-                        <label className="cheaper" key={idx2}></label>
-                      );
-                    }
-                    let strPrice =
-                      String(arr2.price) === " 一 一 " ? (
-                        " 一 一 "
-                      ) : (
-                        <span>查看</span>
-                      );
-                    let localeString =
-                      Number(arr2.price).toLocaleString() === "非數值"
-                        ? arr2.price
-                        : Number(arr2.price).toLocaleString();
-
-                    // console.log(strPrice);
-                    return (
-                      <div
-                        className={`cellInfo d-flex flex-center ${cross} ${active}`}
-                        key={idx2}
-                        id={id}
-                        onClick={this.onClick}
-                      >
-                        <span className={isNaN(arr2.price) ? "" : "price"}>
-                          {Number(arr2.price).toLocaleString()
-                            ? localeString
-                            : strPrice}
-                          {cheaper}
-                        </span>
-                      </div>
+                  const cheaper = [];
+                  if (arr2.isCheaper === true) {
+                    cheaper.push(
+                      <label className="cheaper" key={idx2}></label>
                     );
-                  });
-                })}
-              </div>
+                  }
+                  let strPrice =
+                    String(arr2.price) === " 一 一 " ? (
+                      " 一 一 "
+                    ) : (
+                      <span>查看</span>
+                    );
+                  let localeString =
+                    Number(arr2.price).toLocaleString() === "非數值"
+                      ? arr2.price
+                      : Number(arr2.price).toLocaleString();
+
+                  // console.log(strPrice);
+                  return (
+                    <div
+                      className={`cellInfo d-flex flex-center ${cross} ${active}`}
+                      key={idx2}
+                      id={id}
+                      onClick={this.onClick}
+                    >
+                      <span className={isNaN(arr2.price) ? "" : "price"}>
+                        {Number(arr2.price).toLocaleString()
+                          ? localeString
+                          : strPrice}
+                        {cheaper}
+                      </span>
+                    </div>
+                  );
+                });
+              })}
             </div>
           </div>
         </div>
