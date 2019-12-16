@@ -236,7 +236,7 @@ $cellInfo-width: 100% / $cell-count;
         position: absolute;
         left: 0;
         top: 0;
-        transition: all;
+        transition: 0.3s all;
         //一格
         &.show1 {
           min-width: calc((100% / 1) * 7);
@@ -258,10 +258,25 @@ $cellInfo-width: 100% / $cell-count;
           transform: translateX(0%);
         }
         &.slide1 {
-          transform: translateX(-28.6%);
+          transform: translateX(-14.3%);
         }
         &.slide2 {
-          transform: translateX(-57.1%);
+          transform: translateX(-28.6%);
+        }
+        &.slide3 {
+          transform: translateX(-42.9%);
+        }
+
+        &.slide4 {
+          transform: translateX(-57.2%);
+        }
+
+        &.slide5 {
+          transform: translateX(-71.5%);
+        }
+
+        &.slide6 {
+          transform: translateX(-85.8%);
         }
       }
       .priceShow {

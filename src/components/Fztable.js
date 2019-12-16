@@ -16,7 +16,7 @@ class Fztable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      column: "slide0", //存slide的Class
+      column: 0, //存slide的Class  ex:slide"0"
       cross: [], //存放十字選取的陣列
       active: -1, //是否加上active的class
       arrowLeft: 0, //左按鈕狀態
@@ -25,8 +25,7 @@ class Fztable extends Component {
       transition: this.props.speed + "s",
       moveleft: 0 + "%",
       times: 1, //儲存點擊次數
-      showClass: ["show1", "show2", "show3", "show4"],
-      slideClass: ["slide1", "slide2", "slide3", "slide4"]
+      showClass: ["show1", "show2", "show3", "show4"]
     };
   }
 
@@ -38,16 +37,12 @@ class Fztable extends Component {
     let clickTimes = this.state.times - 1; //點擊次數
     let arrow_l_show;
     const { column } = this.state;
-    if (column === "slide1") {
+
+    if (column < 7) {
       this.setState({
-        column: "slide0",
-        arrow_r_show: 1
-      });
-      console.log("column", column);
-    } else {
-      this.setState({
-        column: "slide1",
-        arrow_r_show: 1
+        column: column - slide,
+        arrow_r_show: 1,
+        arrow_l_show: 0
       });
     }
 
@@ -84,18 +79,15 @@ class Fztable extends Component {
     let arrow_r_show;
     let rightClick = Math.floor((7 - show) / slide);
     const { column } = this.state;
-    if (column === "slide0") {
+
+    if (column < 6) {
       this.setState({
-        column: "slide1",
+        column: column + slide,
         arrow_r_show: 1,
         arrow_l_show: 0
       });
-    } else {
-      this.setState({
-        arrow_l_show: 1,
-        column: "slide2"
-      });
     }
+
     console.log("column", column);
     if (this.state.times <= rightClick) {
       clickTimes = this.state.times + 1;
@@ -155,21 +147,17 @@ class Fztable extends Component {
 
   componentDidMount() {
     const showList = this.props.count.show - 1;
-    const slideList = this.props.count.slide - 1;
     this.setState({
-      showClass: this.state.showClass[showList],
-      slideClass: this.state.slideClass[slideList]
+      showClass: this.state.showClass[showList]
     });
   }
 
   render() {
-    const { show, slide } = this.props.count;
-    const { slideClass, showClass, column } = this.state;
+    const { showClass, column } = this.state;
     let arrowLeft = this.state.arrowLeft === 0 ? "d-none" : "";
     let arrowRight = this.state.arrowRight === 0 ? "d-none" : "";
     let transition = Number(this.props.speed) + "s";
 
-    console.log("transition", transition);
     return (
       <div className="container d-flex">
         <div>
@@ -208,7 +196,7 @@ class Fztable extends Component {
         </div>
         <div className={"rightTable"}>
           {/* 滾動區域!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-          <div className={`scrolled ${showClass} ${column} ${transition}`}>
+          <div className={`scrolled ${showClass} slide${column} ${transition}`}>
             <div className="endDate d-flex flex-center">
               {tripData.date.map((ele, idx) => {
                 // console.log("ele.data", ele.data[idx]["id"]);

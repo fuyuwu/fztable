@@ -259,8 +259,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    -webkit-transition: all;
-    transition: all;
+    -webkit-transition: 0.3s all;
+    transition: 0.3s all;
   }
   .container .rightTable .scrolled.show1 {
     min-width: calc((100% / 1) * 7);
@@ -279,12 +279,28 @@
             transform: translateX(0%);
   }
   .container .rightTable .scrolled.slide1 {
+    -webkit-transform: translateX(-14.3%);
+            transform: translateX(-14.3%);
+  }
+  .container .rightTable .scrolled.slide2 {
     -webkit-transform: translateX(-28.6%);
             transform: translateX(-28.6%);
   }
-  .container .rightTable .scrolled.slide2 {
-    -webkit-transform: translateX(-57.1%);
-            transform: translateX(-57.1%);
+  .container .rightTable .scrolled.slide3 {
+    -webkit-transform: translateX(-42.9%);
+            transform: translateX(-42.9%);
+  }
+  .container .rightTable .scrolled.slide4 {
+    -webkit-transform: translateX(-57.2%);
+            transform: translateX(-57.2%);
+  }
+  .container .rightTable .scrolled.slide5 {
+    -webkit-transform: translateX(-71.5%);
+            transform: translateX(-71.5%);
+  }
+  .container .rightTable .scrolled.slide6 {
+    -webkit-transform: translateX(-85.8%);
+            transform: translateX(-85.8%);
   }
   .container .rightTable .priceShow .cellInfo {
     min-width: calc(100% / 7);
