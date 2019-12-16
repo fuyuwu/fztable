@@ -3,8 +3,7 @@ import Fztable from "./Fztable";
 
 class App extends Component {
   state = {
-    date: [],
-    speed: this.props.speed
+    date: []
   };
   componentDidMount() {
     fetch("./tripData.json", {

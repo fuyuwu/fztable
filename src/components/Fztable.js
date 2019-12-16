@@ -40,9 +40,7 @@ class Fztable extends Component {
 
     if (column < 7) {
       this.setState({
-        column: column - slide,
-        arrow_r_show: 1,
-        arrow_l_show: 0
+        column: column - slide
       });
     }
 
@@ -82,9 +80,7 @@ class Fztable extends Component {
 
     if (column < 6) {
       this.setState({
-        column: column + slide,
-        arrow_r_show: 1,
-        arrow_l_show: 0
+        column: column + slide
       });
     }
 
@@ -156,7 +152,8 @@ class Fztable extends Component {
     const { showClass, column } = this.state;
     let arrowLeft = this.state.arrowLeft === 0 ? "d-none" : "";
     let arrowRight = this.state.arrowRight === 0 ? "d-none" : "";
-    let transition = Number(this.props.speed) + "s";
+    let transition = this.props.speed + "s";
+    let init = this.init;
 
     return (
       <div className="container d-flex">
