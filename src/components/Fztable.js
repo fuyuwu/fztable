@@ -15,102 +15,123 @@ class Fztable extends Component {
   };
   constructor(props) {
     super(props);
-    this.status = ["show1", "show2", "show3", "show4"];
     this.state = {
+      column: "slide0", //存slide的Class
       cross: [], //存放十字選取的陣列
       active: -1, //是否加上active的class
       arrowLeft: 0, //左按鈕狀態
       arrowRight: 1, //右按鈕狀態
       scroll_position: 0, //捲動框位置
-      scroll_style: {
-        transition: this.speed + "s",
-        left: 0
-      }
+      transition: this.props.speed + "s",
+      moveleft: 0 + "%",
+      times: 1, //儲存點擊次數
+      showClass: ["show1", "show2", "show3", "show4"],
+      slideClass: ["slide1", "slide2", "slide3", "slide4"]
     };
   }
-  init = () => {
-    if (
-      Number(this.props.count.show) > 0 &&
-      Number(this.props.count.show) < 5
-    ) {
-      var showList = this.status[this.props.count.show - 1];
-      return showList;
-    }
-  };
-
-  state = {
-    clickTimes: 0, //已按幾次
-    goRight: 1, //箭頭右
-    goLeft: 0, //箭頭左 displayNone
-    speed: 0
-  };
 
   slideLeft = () => {
     console.log("slideLeft");
     const slide = this.props.count.slide;
     const show = this.props.count.show;
-    let scroll_position = this.state.scroll_position - (100 / show) * slide;
-    console.log("左移移動框位置:", scroll_position);
-    let arrowLeft; //判斷左箭頭
-    let moveLeft; //紀錄左移移動數
-    let clickCount = this.state.clickTimes; //點擊次數
-    console.log("clickCount", clickCount);
-
-    if (this.state.clickTimes !== 0) {
-      moveLeft = scroll_position;
-      clickCount = this.state.clickTimes + 1;
-      arrowLeft = 1;
-      if (clickCount === 0) {
-        moveLeft = scroll_position;
-        arrowLeft = 0;
-      } else if (this.state.clickTimes === 0) {
-        moveLeft = scroll_position;
-        arrowLeft = 0;
-      }
+    let scroll_r;
+    let clickTimes = this.state.times - 1; //點擊次數
+    let arrow_l_show;
+    const { column } = this.state;
+    if (column === "slide1") {
+      this.setState({
+        column: "slide0",
+        arrow_r_show: 1
+      });
+      console.log("column", column);
+    } else {
+      this.setState({
+        column: "slide1",
+        arrow_r_show: 1
+      });
     }
 
+    if (this.state.times > 2) {
+      arrow_l_show = 1;
+      clickTimes = this.state.times - 1;
+      scroll_r = this.state.scroll_position - (100 / show) * slide;
+    } else if (this.state.times === 2) {
+      arrow_l_show = 1;
+      scroll_r = 0;
+      clickTimes = 1;
+    }
+    if (clickTimes === 1) {
+      arrow_l_show = 0;
+    }
+
+    console.log("clickTimes", clickTimes, "times", this.state.times);
     this.setState({
-      scroll_position: scroll_position,
-      scroll_style: {
-        transition: this.props.speed + "s",
-        left: -scroll_position + "%"
-      },
-      clickTimes: clickCount,
-      arrowLeft: 1
+      arrowLeft: arrow_l_show,
+      arrowRight: 1,
+      scroll_position: scroll_r,
+      transition: this.props.speed + "s",
+      moveleft: -scroll_r + "%",
+      times: clickTimes
     });
-    console.log("scroll_position", scroll_position);
   };
 
   slideRight = () => {
     console.log("slideRight");
     const slide = this.props.count.slide;
     const show = this.props.count.show;
-    console.log(this.props.speed);
-    let scroll_position = this.state.scroll_position + (100 / show) * slide;
-    console.log("右移移動框位置:", scroll_position);
-
-    let moveRight; //紀錄右移移動數
-    let clickCount = this.state.clickTimes; //點擊次數
-
-    if (scroll_position >= 0) {
-      scroll_position = scroll_position;
+    let scroll_r; //向右移動
+    let clickTimes = this.state.times - 1; //點擊次數
+    let arrow_r_show;
+    let rightClick = Math.floor((7 - show) / slide);
+    const { column } = this.state;
+    if (column === "slide0") {
       this.setState({
-        arrowLeft: 1
+        column: "slide1",
+        arrow_r_show: 1,
+        arrow_l_show: 0
       });
-      console.log("scroll_positio到底是:", scroll_position);
+    } else {
+      this.setState({
+        arrow_l_show: 1,
+        column: "slide2"
+      });
     }
+    console.log("column", column);
+    if (this.state.times <= rightClick) {
+      clickTimes = this.state.times + 1;
+      scroll_r = this.state.scroll_position + (100 / show) * slide;
+      arrow_r_show = 1;
+    } else if (this.state.times > rightClick) {
+      clickTimes = rightClick + 1;
+      scroll_r = (100 / show) * (7 - show);
+      arrow_r_show = 1;
+    }
+    if (this.state.times === rightClick) {
+      arrow_r_show = 0;
+    }
+    console.log(
+      "clickTimes",
+      clickTimes,
+      "rightClick",
+      rightClick,
+      "times",
+      this.state.times
+    );
+    console.log("scroll_r", scroll_r);
+
     this.setState({
-      scroll_position: scroll_position,
-      scroll_style: {
-        transition: this.props.speed + "s",
-        left: -scroll_position + "%"
-      }
+      scroll_position: scroll_r,
+      transition: this.props.speed + "s",
+      moveleft: -scroll_r + "%",
+      arrowRight: arrow_r_show,
+      arrowLeft: 1,
+      times: clickTimes
     });
   };
   onClick = e => {
     let dateId = e.currentTarget.getAttribute("id");
-    let dateRow = Math.floor(dateId / 7);
-    let dateCol = dateId % 7;
+    let dateRow = Math.floor(dateId / 7); //縱
+    let dateCol = dateId % 7; //橫
     let row = [];
     let col = [];
     let both = [];
@@ -132,23 +153,30 @@ class Fztable extends Component {
     console.log(both);
   };
 
+  componentDidMount() {
+    const showList = this.props.count.show - 1;
+    const slideList = this.props.count.slide - 1;
+    this.setState({
+      showClass: this.state.showClass[showList],
+      slideClass: this.state.slideClass[slideList]
+    });
+  }
+
   render() {
+    const { show, slide } = this.props.count;
+    const { slideClass, showClass, column } = this.state;
     let arrowLeft = this.state.arrowLeft === 0 ? "d-none" : "";
     let arrowRight = this.state.arrowRight === 0 ? "d-none" : "";
-    let showList = this.init();
+    let transition = Number(this.props.speed) + "s";
+
+    console.log("transition", transition);
     return (
       <div className="container d-flex">
         <div>
-          <div
-            className={`slideBtn goLeft ${arrowLeft}`}
-            onClick={this.slideLeft}
-          >
+          <div className={`goLeft ${arrowLeft}`} onClick={this.slideLeft}>
             <i className="fas fa-chevron-left" />
           </div>
-          <div
-            className={`slideBtn goRight ${this.state.arrowRight}`}
-            onClick={this.slideRight}
-          >
+          <div className={`goRight ${arrowRight}`} onClick={this.slideRight}>
             <i className="fas fa-chevron-right" />
           </div>
         </div>
@@ -180,10 +208,7 @@ class Fztable extends Component {
         </div>
         <div className={"rightTable"}>
           {/* 滾動區域!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-          <div
-            className={`scrolled ${showList}`}
-            style={this.state.scroll_style}
-          >
+          <div className={`scrolled ${showClass} ${column} ${transition}`}>
             <div className="endDate d-flex flex-center">
               {tripData.date.map((ele, idx) => {
                 // console.log("ele.data", ele.data[idx]["id"]);
@@ -204,7 +229,7 @@ class Fztable extends Component {
               })}
             </div>
             {/* isNaN() 函式會判斷某個數值是不是NaN-->判斷price,'--','查看' */}
-            <div className="priceShow d-flex">
+            <div className="priceShow d-flex ">
               {tripData.date.map((arr1, idx1) => {
                 return arr1.data.map((arr2, idx2) => {
                   let id = idx1 * 7 + idx2;

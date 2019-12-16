@@ -4,12 +4,15 @@ $info-border: 1px solid #bbb;
 $cell-count: 7;
 $cellInfo-width: 100% / $cell-count;
 
-@mixin transform($property: right 0) {
-  -webkit-transform: $property;
-  -moz-transform: $property;
-  -ms-transform: $property;
-  -o-transform: $property;
-  transform: $property;
+@mixin pc-width() {
+  @media all and (min-width: 980px) {
+    @content;
+  }
+}
+@mixin mobile-width() {
+  @media all and (max-width: 980px) {
+    @content;
+  }
 }
 
 .d-flex {
@@ -70,6 +73,7 @@ $cellInfo-width: 100% / $cell-count;
   overflow: hidden;
   position: relative;
   white-space: nowrap;
+
   .goLeft {
     padding: 8px 3px;
     background: hsla(0, 0%, 67%, 0.5);
@@ -80,7 +84,6 @@ $cellInfo-width: 100% / $cell-count;
     text-align: center;
     color: #fff;
     cursor: pointer;
-    display: none;
   }
   .goRight {
     padding: 8px 3px;
@@ -212,9 +215,6 @@ $cellInfo-width: 100% / $cell-count;
   .container {
     .rightTable {
       position: relative;
-      .slide_btn {
-        display: none;
-      }
       .scrolled {
         .cellInfo {
           width: 100%;
@@ -229,17 +229,6 @@ $cellInfo-width: 100% / $cell-count;
 }
 @media screen and (max-width: 980px) {
   .container {
-    .slide_btn {
-      &.goLeft {
-        left: 0;
-      }
-      &.goRight {
-        right: 0;
-      }
-      &.btn_hide {
-        display: none;
-      }
-    }
     .rightTable {
       position: relative;
       .scrolled {
@@ -247,7 +236,8 @@ $cellInfo-width: 100% / $cell-count;
         position: absolute;
         left: 0;
         top: 0;
-        // 一格
+        transition: all;
+        //一格
         &.show1 {
           min-width: calc((100% / 1) * 7);
         }
@@ -262,6 +252,16 @@ $cellInfo-width: 100% / $cell-count;
         // 四格
         &.show4 {
           min-width: calc((100% / 4) * 7);
+        }
+
+        &.slide0 {
+          transform: translateX(0%);
+        }
+        &.slide1 {
+          transform: translateX(-28.6%);
+        }
+        &.slide2 {
+          transform: translateX(-57.1%);
         }
       }
       .priceShow {

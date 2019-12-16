@@ -3,7 +3,8 @@ import Fztable from "./Fztable";
 
 class App extends Component {
   state = {
-    date: []
+    date: [],
+    speed: this.props.speed
   };
   componentDidMount() {
     fetch("./tripData.json", {
@@ -24,7 +25,7 @@ class App extends Component {
     return (
       <Fztable
         tripData={this.state.data}
-        count={{ slide: 4, show: 3 }}
+        count={{ slide: 2, show: 3 }}
         speed={0.3}
         whenClick={element => {
           console.log(element);
