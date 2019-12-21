@@ -4,17 +4,6 @@ $info-border: 1px solid #bbb;
 $cell-count: 7;
 $cellInfo-width: 100% / $cell-count;
 
-@mixin pc-width() {
-  @media all and (min-width: 980px) {
-    @content;
-  }
-}
-@mixin mobile-width() {
-  @media all and (max-width: 980px) {
-    @content;
-  }
-}
-
 .d-flex {
   display: flex;
 }
